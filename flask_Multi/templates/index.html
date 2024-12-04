@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Archivos XML</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Lista de Archivos</a></li>
+                <li><a href="{{ url_for('create') }}">Crear XML</a></li>
+                <li><a href="{{ url_for('upload') }}">Cargar XML</a></li>
+                <li><a href="{{ url_for('convert') }}">Convertir Texto a XML</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Sección Lista de Archivos -->
+        <section class="card">
+            <div class="card-header">
+                <h1>Lista de Archivos XML</h1>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% if files %}
+                        {% for file in files %}
+                            <li class="list-group-item">
+                                <span>{{ file.name }}</span>
+                                <div>
+                                    <!-- Botones para eliminar, actualizar o crear un archivo nuevo -->
+                                    <a class="btn btn-danger" href="{{ url_for('delete', id=file.id) }}">Eliminar</a>
+                                    <a class="btn btn-primary" href="{{ url_for('update', id=file.id) }}">Actualizar</a>
+                                    <a class="btn btn-success" href="{{ url_for('read', id=file.id) }}">Ver Contenido</a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item">No hay archivos XML disponibles.</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Gestión de Archivos XML</p>
+    </footer>
+</body>
+</html>

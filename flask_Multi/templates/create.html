@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Archivo XML</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Lista de Archivos</a></li>
+                <li><a href="{{ url_for('create') }}">Crear XML</a></li>
+                <li><a href="{{ url_for('upload') }}">Cargar XML</a></li>
+                <li><a href="{{ url_for('convert') }}">Convertir Texto a XML</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Sección para crear un nuevo archivo XML -->
+        <section class="card">
+            <div class="card-header">
+                <h2>Crear Nuevo Archivo XML</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('create') }}" method="POST">
+                    <label for="file-name">Nombre del Archivo:</label>
+                    <input type="text" id="file-name" name="file-name" required>
+                    
+                    <div id="elements-container">
+                        <label for="element-1">Elemento (Etiqueta:Valor):</label>
+                        <input type="text" name="elements[]" id="element-1" placeholder="Ej. nombre:Juan" required>
+                    </div>
+                    
+                    <button type="button" id="add-element" class="btn btn-primary">Agregar Elemento</button>
+                    <button type="submit" class="btn btn-success">Crear</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Gestión de Archivos XML</p>
+    </footer>
+
+    <script>
+        // JavaScript para agregar más campos dinámicamente
+        let elementCounter = 1;
+        const addElementButton = document.getElementById('add-element');
+        const elementsContainer = document.getElementById('elements-container');
+
+        addElementButton.addEventListener('click', function() {
+            elementCounter++;
+            const newElement = document.createElement('div');
+            newElement.classList.add('element-group');
+            newElement.innerHTML = `
+                <label for="element-${elementCounter}">Elemento (Etiqueta:Valor):</label>
+                <input type="text" name="elements[]" id="element-${elementCounter}" placeholder="Ej. nombre:Juan" required>
+            `;
+            elementsContainer.appendChild(newElement);
+        });
+    </script>
+</body>
+</html>

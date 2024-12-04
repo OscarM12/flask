@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir Texto a XML</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Lista de Archivos</a></li>
+                <li><a href="{{ url_for('create') }}">Crear XML</a></li>
+                <li><a href="{{ url_for('upload') }}">Cargar XML</a></li>
+                <li><a href="{{ url_for('convert') }}">Convertir Texto a XML</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <div class="card-header">
+                <h2>Convertir Texto a XML</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('convert') }}" method="POST">
+                    <label for="input-text">Texto:</label>
+                    <textarea id="input-text" name="input-text" rows="10" required></textarea>
+                    <button type="submit" class="btn btn-success">Convertir</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Gestión de Archivos XML</p>
+    </footer>
+</body>
+</html>

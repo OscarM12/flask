@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar XML</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Lista de Archivos</a></li>
+                <li><a href="#crear">Crear XML</a></li>
+                <li><a href="#cargar">Cargar XML</a></li>
+                <li><a href="#convertir">Convertir Texto a XML</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Sección para cargar un archivo XML -->
+        <section class="card">
+            <div class="card-header">
+                <h2>Cargar Archivo XML</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                    <label for="file-upload">Seleccionar Archivo:</label>
+                    <input type="file" id="file-upload" name="file-upload" accept=".xml" required>
+                    <button type="submit" class="btn btn-warning">Cargar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Gestión de Archivos XML</p>
+    </footer>
+</body>
+</html>
